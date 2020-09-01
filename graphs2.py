@@ -43,17 +43,17 @@ plt.figure(figsize=figsize_rect)
 yearToPrice = train.loc[train['YearBuilt'] >= 1920].groupby('YearBuilt')['SalePrice'].agg(np.mean)
 yearToPrice.plot.line(color="#46a5e5", figsize=figsize_rect)
 plt.xlabel('Year built')
-plt.ylabel('Sale price')
+plt.ylabel('Average Sale price')
 plt.draw()
 
 yearToPrice.rename_axis(
     'YearBuilt').reset_index(name='SalePrice').plot.scatter(x='YearBuilt', y='SalePrice', color="#46a5e5",
                                                             figsize=figsize_rect)
 plt.xlabel('Year built')
-plt.ylabel('Sale price')
+plt.ylabel('Average Sale price')
 plt.draw()
 
-frequencyToRooms = train.groupby('TotRmsAbvGrd').size().rename_axis('TotRmsAbvGrd').reset_index(name='Frequency')
+frequencyToRooms = train.groupby('TotRmsAbvGrd').size().reset_index(name='Frequency')
 frequencyToRooms.plot.line(color="#46a5e5", x='TotRmsAbvGrd', y='Frequency', figsize=figsize_rect)
 plt.ylabel("Frequency")
 plt.xlabel("TotRmsAbvGrd")
