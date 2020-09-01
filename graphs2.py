@@ -9,10 +9,18 @@ figsize_rect = (12, 7)  # dimensiones para graficos en formato rectangular
 figsize_sqr = (9, 9)  # dimensiones para graficos en formato cuadrado
 
 # 3.7. Realice una gráfica de pastel y una gráfica de barras para cualquier variable categórica (libre elección).
-plt.figure(figsize=figsize_sqr)
+plt.figure(figsize=figsize_rect)
 frequencyToMszoning = train.groupby('MSZoning')['MSZoning'].count()
-frequencyToMszoning.plot(kind='pie', autopct='%1.f%%')
+frequencyToMszoning.plot(kind='pie', autopct='%1.f%%', textprops=dict(color="w"))
+legend = (
+    'C Commercial', 'FV  Floating Village Residential', 'RH  Residential High Density', 'RL  Residential Low Density',
+    'RM Residential Medium Density')
+plt.legend(labels=legend,
+           title="General zoning classification of the sale",
+           loc="center left",
+           bbox_to_anchor=(1, 0, 0.5, 1))
 plt.draw()
+plt.savefig('output.png')
 
 plt.figure(figsize=figsize_rect)
 frequencyToMszoning.plot(kind='bar')
@@ -22,7 +30,7 @@ plt.draw()
 # 3.8. Realice una gráfica de pastel y una gráfica de barras para cualquier variable cuantitativa (libre elección).
 plt.figure(figsize=figsize_sqr)
 frequencyToFireplaces = train.groupby('Fireplaces')['Fireplaces'].count()
-frequencyToFireplaces.plot(kind='pie', autopct='%1.f%%')
+frequencyToFireplaces.plot(kind='pie', autopct='%1.f%%', textprops=dict(color="w"))
 plt.draw()
 
 plt.figure(figsize=figsize_rect)
@@ -64,3 +72,6 @@ plt.ylabel("Frequency")
 plt.draw()
 
 plt.show()  # Mostrar graficos
+
+
+# 3.11. Detectar mediciones atípicas en los datos. WIP
