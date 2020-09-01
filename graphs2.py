@@ -63,7 +63,8 @@ print(years)
 prices = [train.loc[train['YearBuilt'] == year].SalePrice.mean() for year in years]
 print(prices)
 plt.figure(5)
-plt.plot(years, prices, color="#46a5e5")
+train.loc[train['YearBuilt'] >= 1920].groupby('YearBuilt')['SalePrice'].agg(np.mean).plot.line(color="#46a5e5")
+# plt.plot(years, prices, color="#46a5e5")
 plt.xlabel('Year built')
 plt.ylabel('Sale price')
 plt.draw()
@@ -74,14 +75,14 @@ plt.xlabel('Year built')
 plt.ylabel('Sale price')
 plt.draw()
 
-plt.figure(11)
-print(train.loc[train['YearBuilt'] >= 1920].groupby('YearBuilt')['SalePrice'].agg(np.mean))
-train.loc[train['YearBuilt'] >= 1920].groupby('YearBuilt')['SalePrice'].agg(np.mean).plot.line(color="#46a5e5")
+# plt.figure(11)
+# print(train.loc[train['YearBuilt'] >= 1920].groupby('YearBuilt')['SalePrice'].agg(np.mean))
+# train.loc[train['YearBuilt'] >= 1920].groupby('YearBuilt')['SalePrice'].agg(np.mean).plot.line(color="#46a5e5")
 
 # plt.plot(years, prices, 'ro', markersize=4, color="#46a5e5")
 # plt.xlabel('Year built')
 # plt.ylabel('Sale price')
-plt.draw()
+# plt.draw()
 
 
 df = train.groupby('TotRmsAbvGrd').size().rename_axis('TotRmsAbvGrd').reset_index(name='frequency')
